@@ -75,7 +75,7 @@ All endpoints (except health check) require a security header:
 
 Header Key: X-API-KEY
 
-Header Value: interview-test-key-123
+Header Value: imageProcessingService@2026
 
 Step-by-Step Testing via cURL
 Step 1: Upload an Image
@@ -83,7 +83,7 @@ Step 1: Upload an Image
 Bash
 
 curl -X POST "http://localhost:8000/api/v1/upload" \
-     -H "X-API-KEY: interview-test-key-123" \
+     -H "X-API-KEY: imageProcessingService@2026" \
      -H "Content-Type: multipart/form-data" \
      -F "file=@your_photo.jpg"
 Note the image_id returned in the response.
@@ -93,7 +93,7 @@ Step 2: Analyze the Image
 Bash
 
 curl -X POST "http://localhost:8000/api/v1/analyze" \
-     -H "X-API-KEY: interview-test-key-123" \
+     -H "X-API-KEY: imageProcessingService@2026" \
      -H "Content-Type: application/json" \
      -d '{"image_id": "IMAGE_ID_RETURNED_UPLOAD"}'
 
