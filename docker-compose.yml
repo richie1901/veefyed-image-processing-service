@@ -1,0 +1,11 @@
+services:
+  api-service:
+    build: .
+    container_name: image-processing-service
+    ports:
+      - "8000:8000"
+    volumes:
+      # - .:/code
+      - ./uploads:/code/uploads
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    restart: unless-stopped

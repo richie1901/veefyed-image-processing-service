@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+
+# Local storage & Logs
+uploads/
+*.log
+
+# Environment & Secrets
+.env
+
+# OS Metadata
+.DS_Store
+Thumbs.db
+
+# Git
+.git
+.gitignore
