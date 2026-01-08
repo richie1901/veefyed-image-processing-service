@@ -28,22 +28,6 @@ Server: Uvicorn
 
 Containerization: Docker & Docker Compose
 
-## Project Structure
-image-processing-service/
-├── app/
-│   ├── api/v1/         # Route controllers & Endpoint definitions
-│   ├── core/           # Security (API Key) & Global Config (Pydantic Settings)
-│   ├── schemas/        # Pydantic models (Request/Response validation)
-│   ├── services/       # Business logic (File I/O & Mock AI Logic)
-│   ├── utils/          # Utilities (Formatting, unit conversion)
-│   └── main.py         # App entry point & Logging configuration
-├── uploads/            # Local persistent storage for images
-├── .dockerignore       # Optimized Docker build exclusions
-├── Dockerfile          # Multi-stage build container definition
-├── docker-compose.yml  # Service orchestration & Volume mapping
-├── requirements.txt    # Project dependencies
-└── README.md           # Technical Documentation
-
 ## How to Run
 1. Using Docker (Recommended)
 This ensures environment parity. The setup includes a volume mount to the ./uploads directory to persist data.
@@ -80,8 +64,6 @@ Header Value: imageProcessingService@2026
 Step-by-Step Testing via cURL
 Step 1: Upload an Image
 
-Bash
-
 curl -X POST "http://localhost:8000/api/v1/upload" \
      -H "X-API-KEY: imageProcessingService@2026" \
      -H "Content-Type: multipart/form-data" \
@@ -89,8 +71,6 @@ curl -X POST "http://localhost:8000/api/v1/upload" \
 Note the image_id returned in the response.
 
 Step 2: Analyze the Image
-
-Bash
 
 curl -X POST "http://localhost:8000/api/v1/analyze" \
      -H "X-API-KEY: imageProcessingService@2026" \
@@ -116,3 +96,20 @@ Asynchronous Tasks: Move analysis logic to Celery + Redis background workers to 
 Real World Image Analysis Integration: Transition to a real world image analysis integration.
 
 Rate Limiting: Implement limits on the /upload endpoint to mitigate DoS risks and storage abuse.
+
+## Project Structure
+```text
+image-processing-service/
+├── app/
+│   ├── api/v1/         # Route controllers & Endpoint definitions
+│   ├── core/           # Security (API Key) & Global Config (Pydantic Settings)
+│   ├── schemas/        # Pydantic models (Request/Response validation)
+│   ├── services/       # Business logic (File I/O & Mock AI Logic)
+│   ├── utils/          # Utilities (Formatting, unit conversion)
+│   └── main.py         # App entry point & Logging configuration
+├── uploads/            # Local persistent storage for images
+├── .dockerignore       # Optimized Docker build exclusions
+├── Dockerfile          # Multi-stage build container definition
+├── docker-compose.yml  # Service orchestration & Volume mapping
+├── requirements.txt    # Project dependencies
+└── README.md           # Technical Documentation
