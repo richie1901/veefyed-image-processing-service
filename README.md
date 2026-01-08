@@ -51,8 +51,6 @@ Once running, access the interactive docs at:
 
 Swagger UI: http://localhost:8000/docs
 
-Redoc: http://localhost:8000/redoc
-
 Authentication
 All endpoints (except health check) require a security header:
 
@@ -106,7 +104,6 @@ image-processing-service/
 │   ├── core/           # Security (API Key) & Global Config (Pydantic Settings)
 │   ├── schemas/        # Pydantic models (Request/Response validation)
 │   ├── services/       # Business logic (File I/O & Mock AI Logic)
-│   ├── utils/          # Utilities (Formatting, unit conversion)
 │   └── main.py         # App entry point & Logging configuration
 ├── uploads/            # Local persistent storage for images
 ├── .dockerignore       # Optimized Docker build exclusions
