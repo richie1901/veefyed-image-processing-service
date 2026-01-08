@@ -1,6 +1,5 @@
 # Image Processing Backend Service
-
-A robust, production-ready FastAPI service designed for mobile app integration. This service handles high-efficiency image uploads, performs deterministic mock skin analysis, and provides structured JSON responses with rich metadata.
+This service handles image uploads, performs deterministic mock skin analysis, and provides structured JSON responses with metadata.
 
 ## Key Features
 Asynchronous I/O: Built with FastAPI for high-concurrency and low-latency performance.
@@ -67,7 +66,7 @@ Step 1: Upload an Image
 curl -X POST "http://localhost:8000/api/v1/upload" \
      -H "X-API-KEY: imageProcessingService@2026" \
      -H "Content-Type: multipart/form-data" \
-     -F "file=@your_photo.jpg"
+     -F "file=@sample_photo.jpg"
 Note the image_id returned in the response.
 
 Step 2: Analyze the Image
@@ -75,7 +74,7 @@ Step 2: Analyze the Image
 curl -X POST "http://localhost:8000/api/v1/analyze" \
      -H "X-API-KEY: imageProcessingService@2026" \
      -H "Content-Type: application/json" \
-     -d '{"image_id": "IMAGE_ID_RETURNED_UPLOAD"}'
+     -d '{"image_id": "IMAGE_ID_RETURNED_VIA_UPLOAD"}'
 
 ## Engineering Decisions & Assumptions
 Persistence: A Docker volume is used to map the host ./uploads folder to the container. This prevents data loss when the container is rebuilt or restarted.
@@ -88,6 +87,8 @@ Human Readable Metadata: The service implements a utility to convert raw file by
 
 ### Production Roadmap
 Database Integration: Migrate from filesystem lookups to a database (PostgreSQL) for metadata tracking and user-image ownership.
+
+Authentication And Authorization: Use Keycloak and OAuth for robust API security and future role based access control and authorization
 
 Object Storage: Transition from local storage to AWS S3 or GCP Buckets to allow for horizontal scaling.
 
